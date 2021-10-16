@@ -5,15 +5,16 @@ using UnityEngine;
 using UnityEditor;
 #endif
 using UnityEngine.SceneManagement;
-using TMPro;
+using UnityEngine.UI;
 
 public class MenuUIHandler : MonoBehaviour
 {
-    [SerializeField] TMP_InputField inputField;
+    [SerializeField] InputField inputField;
 
-    public string PlayerName()
+    public void PlayerName()
     {
-        return inputField.text;
+        MenuManager.Instance.PlayerName = inputField.text;
+        
     }
 
 
@@ -33,5 +34,10 @@ public class MenuUIHandler : MonoBehaviour
 
     }
 
-    
+    private void Update()
+    {
+        PlayerName();
+    }
+
+
 }
