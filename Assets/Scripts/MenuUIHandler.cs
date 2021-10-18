@@ -6,10 +6,14 @@ using UnityEditor;
 #endif
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class MenuUIHandler : MonoBehaviour
 {
     [SerializeField] InputField inputField;
+    [SerializeField] TextMeshProUGUI bestScoreText;
+
+
 
     public void PlayerName()
     {
@@ -34,10 +38,32 @@ public class MenuUIHandler : MonoBehaviour
 
     }
 
+   public void ResetScore()
+    {
+        MenuManager.Instance.PlayerBestScore = "";
+        MenuManager.Instance.BestScore = 0;
+        MenuManager.Instance.SaveScore();
+        SceneManager.LoadScene(0);
+
+
+    }
+
+    public void BestScore()
+    {
+        bestScoreText.text = $"Best Score : {MenuManager.Instance.PlayerBestScore} : {MenuManager.Instance.BestScore}";
+    }
+
     private void Update()
     {
         PlayerName();
     }
+
+    private void Start()
+    {
+        BestScore();
+    }
+
+
 
 
 }
